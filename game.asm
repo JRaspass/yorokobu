@@ -176,7 +176,7 @@ NMI:
 
 PaletteData:
   .db $0F,$31,$32,$33,$0F,$35,$36,$37,$0F,$39,$3A,$3B,$0F,$3D,$3E,$0F    ;background palette data
-  .db $0F,$16,$27,$18, $0F,$02,$38,$3C, $0F,$1C,$15,$14, $0F,$02,$38,$3C ;sprite palette data
+  .db $0C,$34,$35,$38, $0F,$02,$38,$3C, $0F,$1C,$15,$14, $0F,$02,$38,$3C ;sprite palette data
 
   ;; There are 3 times when the NES processor will interrupt your code and jump to a new location. These vectors, held in PRG ROM tell the processor
   ;; where to go when that happens.
@@ -193,4 +193,4 @@ PaletteData:
 
   .bank 2                       ; Change to bank 2
   .org $0000                    ; start at $0000
-  .incbin "mario.chr"           ; INClude BINary. 8KB graphics file from SMB1
+  .incbin "pinky.chr"           ; INClude BINary. 8KB graphics file from SMB1
