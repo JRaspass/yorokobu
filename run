@@ -1,0 +1,5 @@
+#/bin/sh -e
+
+nesasm game.asm
+
+fceux --xscale 4 --yscale 4 game.nes
