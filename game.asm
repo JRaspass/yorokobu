@@ -86,12 +86,43 @@ LoadPalettesLoop:
   ;;  +-------- Generate an NMI at the start of the
   ;;            vertical blanking interval vblank (0: off; 1: on)
 
-  LDA #$80
-  STA $0200                     ; put sprite 0 in center ($80) of screen vertically
-  STA $0203                     ; put sprite 0 in center ($80) of screen horizontally
-  LDA #$00
-  STA $0201                     ; tile number = 0
-  STA $0202                     ; color pallete = 0, no flipping
+  ; sprite 0 at 8x8
+  LDA #8
+  STA 512
+  STA 515
+  LDA #0
+  STA 513
+  STA 514
+
+  ; sprite 1 at 16x8
+  LDA #8
+  STA 516
+  LDA #16
+  STA 519
+  LDA #1
+  STA 517
+  LDA #0
+  STA 518
+
+  ; sprite 2 at 8x16
+  LDA #16
+  STA 520
+  LDA #8
+  STA 523
+  LDA #2
+  STA 521
+  LDA #0
+  STA 522
+
+  ; sprite 3 at 16x16
+  LDA #16
+  STA 524
+  LDA #16
+  STA 527
+  LDA #3
+  STA 525
+  LDA #0
+  STA 526
 
   LDA #%10000000                 ; enable NMI, sprites from pattern table 0
   STA $2000
@@ -114,9 +145,6 @@ LoadPalettesLoop:
   LDA #%00010000                ; enable sprites
   STA $2001
 
-Forever:
-  JMP Forever
-
 NMI:
   ;; SPRITE DMA
   ;; The fastest and easiest way to transfer your sprites to memory is using DMA (Direct Memory Access). This just means a block of RAM is copied from CPU memory
@@ -126,6 +154,18 @@ NMI:
   STA $2003                     ; set the low byte (00) of the RAM address
   LDA #$02
   STA $4014                     ; set the high byte (02) of the RAM address, start the transfer
+
+  INC 512
+  INC 515
+
+  INC 516
+  INC 519
+
+  INC 520
+  INC 523
+
+  INC 524
+  INC 527
 
   RTI                           ; Return from interrupt
 
