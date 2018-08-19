@@ -1,0 +1,10 @@
+; rotations.asm
+LoadPalettesLoop                 = $C032
+frame                            = $C059
+DecrementTileNumber              = $C004
+SwitchDirectionBackwards         = $C017
+PaletteData                      = $E000
+SwitchRotationDirection          = $C008
+SwitchDirectionForwards          = $C01D
+IncrementTileNumber              = $C000
+start                            = $C023
